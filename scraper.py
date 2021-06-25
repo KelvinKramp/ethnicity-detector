@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 import json
-import validators
 import time
 import random
 # NOTES
@@ -32,10 +31,7 @@ def get_links(website_link):
         return {}
     # print(soup)
     list_links = []
-    counter = 0
     for link in soup.find_all("a", href=True):
-        # test1 = validators.url(link["href"])
-        # test2 = validators.url(website_link+"/"+link["href"])
         # Append to list if new link contains original link
         if str(link["href"]).startswith((str(website_link))):
             list_links.append(link["href"])
@@ -59,18 +55,7 @@ def get_links(website_link):
                 link_with_www = website + link["href"][1:]
                 print("adjusted link =", link_with_www)
                 list_links.append(link_with_www)
-            # print(link["href"])
-        # elif validators.url(website_link+"/"+link["href"]):
-        #     list_links.append(website_link+"/"+link["href"])
-        # Append to list if link is an url
-        # elif (test1 == True) or (test2 == True):
-        # elif validators.url(website_link+"/"+link["href"]):
-        #     # Take the first character ("/") of the link string and concatenate with website link if slash present at start of link
-        #     if link["href"][0] == "/":
-        #         link_with_www = website_homepage_link + link["href"][1:]
-        #     else:
-        #         link_with_www = website_homepage_link + link["href"]
-        #     list_links.append(link_with_www)
+
     # Convert list of links to dictionary and define keys as the links and the values as "Not-checked"
     dict_links = dict.fromkeys(list_links, "Not-checked")
     return dict_links
@@ -80,8 +65,6 @@ def get_subpage_links(l):
     counter = 0
     for link in tqdm(l):
         counter += 1
-        # if counter ==3:
-        #     break
         # If not crawled through this page start crawling and get links
         if l[link] == "Not-checked":
             dict_links_subpages = get_links(link)
@@ -107,7 +90,7 @@ def loop_scrape_functions(website):
     # start while loop
     while counter != 0:
         counter2 += 1
-        limit = 500
+        limit = 500 # limit for subpage links search, adjust if needed!
         if counter2 == limit:
             print("LINK SEARCH LOOP STOPPED: ", limit, " PAGES REACHED")
             break

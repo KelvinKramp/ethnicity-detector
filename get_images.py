@@ -2,7 +2,6 @@ import re
 import requests
 from bs4 import BeautifulSoup
 import os
-# from backend import dir_pic
 
 def get_images(link, website_link):
     site = link
@@ -43,7 +42,7 @@ def get_images(link, website_link):
                     print("FILE", filename.group(0)[1:], " SAVED")
 
     except Exception as e:
-        print("NO IMG TAGGED IMAGES FOUND ON THIS PAGE")
+        print("NO img TAGGED IMAGES FOUND ON THIS PAGE")
         print(e)
 
     # Find all image files with avatar tag in html and add to second list
@@ -69,7 +68,7 @@ def get_images(link, website_link):
                     # print(url)
                     print("FILE", url, " SAVED")
     except Exception as e:
-        print("NO AVATAR TAGGED IMAGES FOUND ON THIS PAGE")
+        print("NO avatar TAGGED IMAGES FOUND ON THIS PAGE")
         print(e)
 
     # Find all image files with avatar tag in html and add to second list
@@ -95,7 +94,7 @@ def get_images(link, website_link):
                     # print(url)
                     print("FILE", url, " SAVED")
     except Exception as e:
-        print("NO AVATAR TAGGED IMAGES FOUND ON THIS PAGE")
+        print("NO a_class_member TAGGED IMAGES FOUND ON THIS PAGE")
         print(e)
 
     # Find all image files with image stored in scrset  tag in html and add to third list
@@ -123,5 +122,5 @@ def get_images(link, website_link):
                         f.write(response.content)
                     print("FILE", url, " SAVED")
     except Exception as e:
-        print("NO AVATAR TAGGED IMAGES FOUND ON THIS PAGE")
+        print("NO srcset TAGGED IMAGES FOUND ON THIS PAGE")
         print(e)
