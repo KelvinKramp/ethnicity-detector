@@ -7,5 +7,5 @@ sanity-check
 *.pickle
 *.json
 Pictures
-__pycached__
+__pycache__
 .idea
