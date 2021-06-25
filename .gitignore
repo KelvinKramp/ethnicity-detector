@@ -1,0 +1,9 @@
+# Project exclude paths
+/venv/
+www.*
+sanity-check
+.ipynb_checkpoints
+.deepface
+*.pickle
+*.json
+Pictures
